@@ -2,8 +2,6 @@ FROM debian:10.8-slim
 
 RUN apt update && \
     apt upgrade -y && \
-    apt remove -y python3 && \
-    apt autoremove -y && \
     apt install -y postfix
 
 RUN mkdir /config && \
