@@ -2,7 +2,10 @@ FROM debian:10.8-slim
 
 RUN apt update && \
     apt upgrade -y && \
-    apt install -y postfix
+    apt install -y --no-install-recommends postfix && \
+    apt remove -y python3 && \
+    apt autoremove -y && \
+    apt clean
 
 RUN mkdir /config && \
     mv /etc/postfix/main.cf /config/main.cf && \
