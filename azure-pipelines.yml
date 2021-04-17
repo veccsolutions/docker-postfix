@@ -10,7 +10,7 @@ steps:
 - task: Docker@2
   displayName: Login
   inputs:
-    containerRegistry: 'Harbor-Vecc-Docker'
+    containerRegistry: 'crvecc.azurecr.io-Docker'
     command: 'login'
 - task: CmdLine@2
   displayName: Build
@@ -19,7 +19,7 @@ steps:
       docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
       docker buildx create --name multiarch --driver docker-container --use
       docker buildx build --platform linux/amd64,linux/arm64 \
-        -t harbor.veccsolutions.org/vecc/postfix:$(build.buildNumber) \
-        -t harbor.veccsolutions.org/vecc/postfix:latest \
+        -t crvecc.azurecr.io/postfix:$(build.buildNumber) \
+        -t crvecc.azurecr.io/postfix:latest \
         --push \
         .
